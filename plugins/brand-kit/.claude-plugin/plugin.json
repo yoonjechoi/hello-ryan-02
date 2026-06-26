@@ -1,0 +1,19 @@
+{
+  "name": "brand-kit",
+  "version": "0.0.1",
+  "description": "헬로 라이언 ep02 2부 '나만의 가상 브랜드' 실습 키트 — 인터뷰로 브랜드 재료를 뽑고(brand-interview), 레퍼런스로 디자인 시트=내 브랜드 스킬을 만들고(brand-sheet), 웹·PPT·카드뉴스·명함까지 한 번에 만드는 오케스트레이터(build-brand-kit)까지. 70대도 따라 만드는 완전 초보용.",
+  "author": {
+    "name": "yoonjechoi"
+  },
+  "keywords": [
+    "brand",
+    "branding",
+    "interview",
+    "design-system",
+    "hello-ryan",
+    "korean",
+    "beginner",
+    "education"
+  ],
+  "license": "MIT"
+}
