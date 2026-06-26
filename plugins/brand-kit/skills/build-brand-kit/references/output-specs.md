@@ -1,7 +1,17 @@
 # 산출물 4종 기술 셸 명세 (output-specs)
 
 > 깎기 1순위(두 실험 합의): 4종의 **기술 셸**(슬라이드 크기·hash 네비·필름스트립 등)이 어느 스킬에도 없어 매번 재발명·재현 실패. 여기에 박제한다.
-> **원칙: 골드 셸을 복제 후 토큰만 교체한다.** 골드 = `_workspace/brand-kit/hanmogeum/outputs/{web,ppt,cardnews,namecard}.html`. 색·문구가 아니라 **구조·스크립트**를 그대로 가져온다.
+> **원칙: 골드 셸을 복제 후 토큰만 교체한다.** 색·문구가 아니라 **구조·스크립트**를 그대로 가져온다.
+>
+> **골드 셸은 두 벌 — 무드에 맞는 쪽을 복제한다:**
+> - **라이트(밝은 바탕):** `_workspace/brand-kit/hanmogeum/outputs/{web,ppt,cardnews,namecard}.html` (크림·명조·차 브랜드)
+> - **다크(어두운 바탕):** `_workspace/brand-kit/simyasangyeong/outputs/{web,ppt,cardnews,namecard}.html` (밤·네온·굵은 산세리프, 검증됨)
+>
+> ⚠️ **다크 브랜드는 "토큰만 교체"로 안 끝난다 — 클래스의 *의미*도 재매핑해야 한다.** 라이트 골드를 다크로 옮기면 깨지니, **다크면 처음부터 다크 골드(simyasangyeong)를 복제**하라. 그래도 점검할 것:
+> 1. 페이지/슬라이드 배경 토큰을 `--night`/`--surface`로(라이트 골드의 cream/paper 자리).
+> 2. `.slide.light`(본문)·`.slide.dark`(표지) 등 **클래스 의미 재정의** — 다크 브랜드는 본문도 어두움(`.light`=night 배경).
+> 3. 본문 텍스트는 밝게(`--text`), **강조어는 항상 네온(밝은 포인트 변형)** → 어두운 배경에 묻힘 방지.
+> 4. CTA 푸터·명함 앞면·카드 1·5 등 "주색 배경" 자리는 `--brand`(딥 톤).
 
 ## 공통 (4종 전부)
 - `<head>`에 `color-typography-specs.md`의 **link(폰트) + :root 토큰 + 공통 클래스를 그대로 인라인**. hex·폰트 변경 금지.
