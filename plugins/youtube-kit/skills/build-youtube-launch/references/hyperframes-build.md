@@ -32,6 +32,7 @@ curl -sL "https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/woff2/Pr
 - 후보 보기 `npx hyperframes catalog` → 설치 `npx hyperframes add <이름>`.
 - **자막:** `caption-weight-shift`(미니멀·굵기전환) 또는 `caption-editorial-emphasis`. → **한글화 패치(§4)**.
 - **광택:** `shimmer-sweep` (워드마크에 `class="shimmer-sweep-target"` + `--shimmer-pos` 스윕).
+- **구독 CTA:** `yt-lower-third`(끝 ~4.5초, 흰 구독 카드) — 한글화 후 `data-start`로 끝부분 배치. 로고 아웃트로가 필요하면 `logo-outro`(SVG 교체).
 - **질감:** `vignette` + `grain-overlay`. **전환:** 잔잔=소프트 디졸브 / 빠름=`grid-pixelate-wipe`.
 - ⚠️ 브랜드와 안 맞는 건 배제: `caption-glitch-rgb·neon·matrix·highlight(tiktok)·motion-blur·apple/finance/vpn` 등.
 
@@ -41,6 +42,11 @@ curl -sL "https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/woff2/Pr
 - `var DURATION` 과 `data-duration` 을 **영상 길이**로, light weight `300`→`400`(로컬 woff2가 400/700).
 - `TRANSCRIPT`(단어별 {text,start,end})를 **우리 대본**으로 교체(§4).
 - index의 자막 레이어를 `data-composition-src="compositions/components/<자막>.html"` 로 가리키고 `data-composition-id` 를 그 컴포넌트 id로 맞춘다.
+
+**검증된 한글 레시피 (한모금에서 실제 사용):**
+- **`caption-editorial-emphasis`**(에디토리얼·강조어): 평문 폰트→**Pretendard**, 강조 폰트(Playfair Display)→**한국 명조**(`@fontsource/nanum-myeongjo` woff2 로컬). `BLOCKS`(블록별 line1=평문`n`/line2=강조`e`)는 **각 구절의 마지막 단어를 `e`(강조)** 로 — 한국어는 끝 단어가 핵심·동사("지치죠?"·"기다렸어요"·"해봐요."). 단어를 구절(쉼표·문장부호·≤4어)로 끊어 자동 생성.
+- **`caption-weight-shift`**(미니멀): Montserrat→Pretendard, 중앙 큰 한 줄·굵기 전환. 둘 중 톤 맞춰 택1.
+- **`yt-lower-third`**(구독 CTA): `DM Sans`→Pretendard, 채널명·구독자줄·버튼(Subscribe→**구독**/Subscribed→**구독완료**) 한글화, `assets/avatar.jpg`→**브랜드 컷**(예: 찻잔 샷).
 
 ## 4. ⚠️ 한글 자막 transcript (whisper 한글이 깨질 수 있음)
 `transcript.json`(whisper)이 invalid-UTF8/오타일 수 있다. → **깨끗한 원본 대본 + 문장 타이밍**으로 단어별 transcript를 직접 만든다(각 문장 [start,end]을 단어 글자수 비례로 분배). (문장 경계 초는 whisper에서 따오거나 직접.)
