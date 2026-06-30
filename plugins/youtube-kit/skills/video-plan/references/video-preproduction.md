@@ -54,6 +54,7 @@
 | 구독 로어서드 | `yt-lower-third` (block) | 구독 유도 |
 | 켄번스·디졸브 | (커스텀 GSAP) | 카탈로그에 없음 — 직접 |
 
+⚠️⚠️ **카탈로그는 문서에만 적지 말고 빌드 때 `npx hyperframes add`로 실제 설치해 쓴다 — 커스텀으로 때우기 금지**(실제로 이걸 어겨 아마추어 자막/모션이 나왔다). 자막은 `caption-weight-shift`/`caption-editorial-emphasis`를 **한글화 패치**(Montserrat→Pretendard·DURATION·TRANSCRIPT 교체)해 쓰고, 광택은 `shimmer-sweep`. 구체 빌드 레시피: `build-youtube-launch/references/hyperframes-build.md`.
 ⚠️ **브랜드와 안 맞는 블록은 의도적으로 배제하고 이유를 적는다**(예: 잔잔한 차 브랜드에 glitch·neon·matrix·motion-blur·apple/finance 류는 시끄러워 제외).
 
 ---
