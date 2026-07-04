@@ -1,0 +1,18 @@
+{
+  "name": "gallery-upload",
+  "version": "0.0.1",
+  "description": "헬로 라이언 갤러리 업로드 — 내가 만든 작품(웹페이지·이미지·글 등 무엇이든)을 \"갤러리에 올려줘\" 한마디로 헬로 라이언 갤러리에 올린다. 사이트에서 받은 업로드 키를 한 번 넣으면 저장되고, 같은 이름은 업데이트·다른 이름은 새 작품. 70대도 따라 하는 완전 초보용.",
+  "author": {
+    "name": "yoonjechoi"
+  },
+  "keywords": [
+    "gallery",
+    "upload",
+    "portfolio",
+    "hello-ryan",
+    "korean",
+    "beginner",
+    "education"
+  ],
+  "license": "MIT"
+}
