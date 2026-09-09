@@ -18,6 +18,8 @@
 - 외부 이미지 0개(무드·심볼은 인라인 SVG/CSS). 폰트 CDN만 의존.
 - **포인트색은 화면당 1곳.** 어두운 배경 위 강조어는 '밝은 포인트 변형' 사용(묻힘 방지).
 - 단일 자체완결 HTML 1파일.
+- `<meta name="viewport" content="width=device-width, initial-scale=1">` 필수(폰에서 열린다). `web.html`은 390px 폭에서 가로 스크롤 0.
+- 오픈그래프 자리 5줄(`og:title`·`og:description`·`og:type`·`og:url`·`og:image`)을 `<head>`에 미리 둔다 — 값은 Phase 4(올리기)에서 채운다. 배포 전엔 `og:url`·`og:image` 를 비워 둬도 된다.
 
 ## ① web.html — 랜딩 한 페이지
 - 중앙 ~1120px, 반응형 2 브레이크포인트. 섹션: 헤더(워드마크 좌상단+메뉴+CTA) → 히어로(슬로건 큰 디스플레이 폰트+보조카피+주 CTA 1개+무드 SVG) → 이야기(01_brand 사실만) → 제품 3카드 → 후기 1~2 → CTA 푸터(보통 다크).
