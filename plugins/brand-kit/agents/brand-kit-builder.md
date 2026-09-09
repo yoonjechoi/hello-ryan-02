@@ -17,7 +17,7 @@ description: 패키징된 '브랜드 스킬'의 색·폰트·로고 토큰을 �
 ## 작업 원칙
 - **같은 옷:** hex·폰트를 임의로 바꾸지 않는다. 포인트색은 화면당 한 곳. **제목 폰트는 brand-skill 토큰을 그대로 따른다**(명조든 굵은 산세리프든 — 무드대로. 명조로 임의 고정 금지). 본문은 Pretendard.
 - 외부 이미지 0개(무드·심볼은 인라인 SVG/CSS). 폰트 CDN만 의존. AI 티(무지개색·이모지 남발) 금지.
-- 골드 기준: 라이트=`_workspace/brand-kit/hanmogeum/outputs/`, 다크=`_workspace/brand-kit/simyasangyeong/outputs/`. **무드에 맞는 골드를 복제**한다. 사실 보존(없는 수치·고유명사 금지, 가상은 "데모용 가상" 표기).
+- 셸 = 플러그인 안 `skills/build-brand-kit/references/shells/*.html` 을 복제한다(참가자 컴퓨터에 골드 폴더는 없다 — 찾지 말 것, `find /` 금지). 다크 브랜드는 output-specs 의 재매핑 4줄대로. 사실 보존(없는 수치·고유명사 금지, 가상은 "데모용 가상" 표기).
 
 ## 입력/출력
 - 입력: `_workspace/brand-kit/<slug>/brand-skill/`, `_workspace/brand-kit/<slug>/01_brand.md`.

@@ -3,19 +3,17 @@
 > 깎기 1순위(두 실험 합의): 4종의 **기술 셸**(슬라이드 크기·hash 네비·필름스트립 등)이 어느 스킬에도 없어 매번 재발명·재현 실패. 여기에 박제한다.
 > **원칙: 골드 셸을 복제 후 토큰만 교체한다.** 색·문구가 아니라 **구조·스크립트**를 그대로 가져온다.
 >
-> **골드 셸은 두 벌 — 무드에 맞는 쪽을 복제한다:**
-> - **라이트(밝은 바탕):** `_workspace/brand-kit/hanmogeum/outputs/{web,ppt,cardnews,namecard}.html` (크림·명조·차 브랜드)
-> - **다크(어두운 바탕):** `_workspace/brand-kit/simyasangyeong/outputs/{web,ppt,cardnews,namecard}.html` (밤·네온·굵은 산세리프, 검증됨)
->
-> ⚠️ **다크 브랜드는 "토큰만 교체"로 안 끝난다 — 클래스의 *의미*도 재매핑해야 한다.** 라이트 골드를 다크로 옮기면 깨지니, **다크면 처음부터 다크 골드(simyasangyeong)를 복제**하라. 그래도 점검할 것:
-> 1. 페이지/슬라이드 배경 토큰을 `--night`/`--surface`로(라이트 골드의 cream/paper 자리).
+> **셸은 이 플러그인 안에 있다 — `references/shells/{web,ppt,cardnews,namecard,index,og}.html`** (라이트, 2026-09-10 실측 배포본 「새벽결」). 복제 후 토큰(:root)·문구·워드마크 SVG 만 바꾼다.
+> 참가자 컴퓨터에 `_workspace/brand-kit/hanmogeum/` 같은 골드 폴더는 **없다. 찾지 마라**(`find /` 금지).
+> 다크 브랜드면 같은 셸에서 **클래스의 의미를 재매핑**한다:
+> 1. 페이지/슬라이드 배경 토큰을 `--night`/`--surface`로(라이트 셸의 cream/paper 자리).
 > 2. `.slide.light`(본문)·`.slide.dark`(표지) 등 **클래스 의미 재정의** — 다크 브랜드는 본문도 어두움(`.light`=night 배경).
 > 3. 본문 텍스트는 밝게(`--text`), **강조어는 항상 네온(밝은 포인트 변형)** → 어두운 배경에 묻힘 방지.
 > 4. CTA 푸터·명함 앞면·카드 1·5 등 "주색 배경" 자리는 `--brand`(딥 톤).
 
 ## 공통 (4종 전부)
 - `<head>`에 `color-typography-specs.md`의 **link(폰트) + :root 토큰 + 공통 클래스를 그대로 인라인**. hex·폰트 변경 금지.
-- 외부 이미지 0개(무드·심볼은 인라인 SVG/CSS). 폰트 CDN만 의존.
+- 외부 이미지 0개(무드·심볼은 인라인 SVG/CSS). 폰트 CDN만 의존 — **4종과 index 가 같은 폰트**(브랜드 스킬의 것 하나).
 - **포인트색은 화면당 1곳.** 어두운 배경 위 강조어는 '밝은 포인트 변형' 사용(묻힘 방지).
 - 단일 자체완결 HTML 1파일.
 - `<meta name="viewport" content="width=device-width, initial-scale=1">` 필수(폰에서 열린다). `web.html`은 390px 폭에서 가로 스크롤 0.

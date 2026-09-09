@@ -54,10 +54,12 @@ description: 참가자의 "나만의 가상 브랜드(가상 회사)"를 인터�
 5. 교육: "'이 사이트 보고 디자인 시트 만들어줘' 한 줄이면 돼요."
 
 ## Phase 3 — 산출물 4종 (서브에이전트)
+**서브에이전트를 부르기 전에 한 줄 말한다**: "넷을 만드는 데 3~5분 걸려요. 화면이 조용해도 멈춘 게 아닙니다." (실측: 이 사이 5~10분 침묵 → 참가자가 Ctrl+C 를 누른다.) Phase 2b 도 같다.
 **에이전트:** `brand-kit-builder` (별도 빌더 스킬 없이 **브랜드 스킬** + 본체로 생성 = brand-as-skill)
 1. `Agent(subagent_type:"brand-kit-builder", model:"opus")`로: `brand-skill/`의 토큰을 **그대로 써서** 4종을 `_workspace/brand-kit/<slug>/outputs/`에 만든다 — `web.html`·`ppt.html`(로고 좌하단)·`cardnews.html`(정사각 5장)·`namecard.html`(앞뒤+메일서명).
-   - **기술 셸은 `references/output-specs.md`를 따른다.** ppt(hash·auto-fit)·cardnews(필름스트립) 같은 셸은 brand-skill에 없으니 **골드 셸(`hanmogeum/outputs/*.html`)을 복제 후 토큰만 교체**(매번 재발명 금지).
-2. 게이트 ③ 체크: □ 토큰이 specs와 1:1 □ 포인트색 주색과 다른 계열·화면당 1곳 □ **어두운 배경 강조어 안 묻힘** □ ppt hash#1~6 점프. → 캡처/여는 법 보여주고 부분 수정 받음.
+   - **기술 셸은 `references/output-specs.md`를 따른다.** ppt(hash·auto-fit)·cardnews(필름스트립) 같은 셸은 brand-skill에 없으니 **플러그인 안 셸(`references/shells/{web,ppt,cardnews,namecard,index,og}.html`)을 복제 후 토큰·문구만 교체**(매번 재발명 금지).
+   - ⚠️ **참가자 컴퓨터에는 `_workspace/brand-kit/hanmogeum/` 같은 골드 폴더가 없다. 찾지 마라.** `find / …`·`find ~ …` 같은 넓은 검색 금지(실측: 5분 낭비 + 권한 경고). 셸은 위 `references/shells/` 뿐이다.
+2. 게이트 ③ 체크: □ 토큰이 specs와 1:1 □ 포인트색 주색과 다른 계열·화면당 1곳 □ **어두운 배경 강조어 안 묻힘** □ ppt hash#1~6 점프. **이 네 줄로 끝낸다** — 대비비 계산·`node --check`·4종 전부 캡처 같은 추가 검사는 하지 않는다(실측: 11분 중 절반이 여기서 샜다). 캡처는 web.html 한 장만. → 여는 법 보여주고 부분 수정 받음.
 3. 교육: "'내 브랜드로 카드뉴스 만들어줘'처럼 브랜드 스킬이 자동 적용돼요."
 > 골드 기준: `_workspace/brand-kit/hanmogeum/outputs/` 품질·일관성을 목표로.
 
@@ -67,11 +69,11 @@ description: 참가자의 "나만의 가상 브랜드(가상 회사)"를 인터�
 게이트 ③이 끝나면 **묻는다**: "인터넷에 올려서 링크로 공유할까요? (Vercel)". "네"면 아래를 **한 번에 이어서** 한다(중간에 되묻지 않는다). "아니요"면 여는 법만 안내하고 마무리.
 
 1. **모음 페이지** `outputs/index.html` — 워드마크·슬로건·한 줄 소개 + 4종으로 가는 카드 4개(web·ppt·cardnews·namecard). 브랜드 스킬 토큰 그대로, 자체완결 1파일.
-2. **모바일** — 5개 파일(index + 4종) `<head>`에 `<meta name="viewport" content="width=device-width, initial-scale=1">`. `web.html`·`index.html`은 폭 390px에서 가로 스크롤·글자 겹침이 없게(브레이크포인트 2개 확인). ppt·cardnews는 이미 scale 로 맞는다.
-3. **오픈그래프(카톡·문자 미리보기 카드)** — 5개 파일 `<head>`에 5줄: `og:title`(회사명 — 슬로건) · `og:description`(01_brand의 한 줄 소개, 60자 안) · `og:type` website · `og:url`(배포 뒤 절대 주소) · `og:image`(아래 `og.png`의 **절대 주소**). 파일마다 title은 "회사명 — 웹/회사소개/카드뉴스/명함"으로.
+2. **모바일** — 5개 파일(index + 4종) `<head>`에 `<meta name="viewport" content="width=device-width, initial-scale=1">`. `web.html`·`index.html`은 폭 390px에서 가로 스크롤이 없게. **판정은 캡처가 아니라 숫자로**: 크롬 헤드리스 `--headless=new --window-size=390,900 --dump-dom` 이 아니라, 간단히 CSS 를 본다 — 고정 폭(`width:1120px` 같은 px 고정)이 있으면 `max-width:100%` 로 바꾼다. **캡처를 보고 "깨졌다"고 판단하지 않는다**(구형 `--headless` 는 잘린 캡처를 만든다 — 실측 5분 낭비). **`npm install`·puppeteer 설치 금지.**
+3. **오픈그래프(카톡·문자 미리보기 카드)** — 5개 파일 `<head>`에 5줄: `og:title`(회사명 — 슬로건) · `og:description`(01_brand의 한 줄 소개, 60자 안) · `og:type` website · `og:url`(배포 뒤 **그 파일의** 절대 주소 — web.html 은 `…/web.html`) · `og:image`(아래 `og.png`의 **절대 주소**). 파일마다 title은 "회사명 — 웹/회사소개/카드뉴스/명함"으로.
 4. **미리보기 그림** `og.html`(1200×630 · 브랜드 배경색 · 워드마크 SVG 크게 · 슬로건 · 폰트 CDN 없이 시스템 폰트) → 크롬 헤드리스로 `og.png`:
-   - 맥 `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot=og.png og.html`
-   - 윈도우 `"C:\Program Files\Google\Chrome\Application\chrome.exe" --headless --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot=og.png og.html` (없으면 `%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe`)
+   - 맥 `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot=og.png og.html`
+   - 윈도우 `"C:\Program Files\Google\Chrome\Application\chrome.exe" --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot=og.png og.html` (없으면 `%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe`)
    - 크롬이 없으면 **`og:image` 줄만 빼고 계속 간다**(멈추지 않는다). 카드에 그림만 안 뜬다.
 5. **배포** — `outputs/` 안에서 `vercel deploy --prod --yes --name <slug>` (참가자는 사전 가이드에서 `vercel login`을 끝냈다. 로그인 창이 뜨면 참가자가 직접 누른다). 처음 배포는 주소를 알기 위한 것 — 나온 `https://….vercel.app` 을 `og:url`·`og:image`(`https://…/og.png`)에 넣고 **같은 명령으로 한 번 더** 배포한다(오픈그래프 그림은 절대 주소여야 카톡이 읽는다). preview 가 아니라 **production**(`--prod`) 이어야 주소가 고정된다.
 6. 참가자에게 주소를 보여주며: "이 주소를 카톡에 붙이면 미리보기 카드가 뜹니다. 카드가 옛것으로 보이면 **그 메시지를 지우고 다시 보내면** 카톡이 새로 읽어 옵니다."
@@ -96,7 +98,7 @@ description: 참가자의 "나만의 가상 브랜드(가상 회사)"를 인터�
 - 사실 보존: `01_brand.md`에 없는 경력·수치·고유명사 금지.
 
 ## 모델·윤문 규칙
-- 모든 `Agent` 호출 **model: "opus"**. 참가자에게 보이는 한국어 산문은 `humanize-korean`(명령어·URL·구조·hex 보존).
+- 모든 `Agent` 호출 **model: "opus"** (문자 그대로 `model` 인자를 넣는다 — 실측에서 빠진 적 있음). Phase 1·2·3·4 끝마다 「직접 하려면 이렇게」 교육 프롬프트를 **빠뜨리지 않는다**(실측: 2·3 누락). 참가자에게 보이는 한국어 산문은 `humanize-korean`(명령어·URL·구조·hex 보존).
 
 ## 테스트 시나리오
 - **정상:** "서윤 님 가상 브랜드 만들어줘" → 슬러그 `hanmogeum` → Phase1 인터뷰 → 게이트① OK → Phase2 `brand-sheet-maker`가 레퍼런스(차 브랜드) 추천→추출→브랜드 스킬 → 게이트② OK → Phase3 `brand-kit-builder`가 4종 → 게이트③ → **Phase4 "올릴까요?" → 네 → index·viewport·오픈그래프·og.png·`vercel deploy --prod` 두 번 → 주소 안내.** 단계마다 교육 프롬프트.
